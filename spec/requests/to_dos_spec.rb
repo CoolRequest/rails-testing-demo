@@ -18,11 +18,19 @@ RSpec.describe "/to_dos", type: :request do
   # ToDo. As you add validations to ToDo, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      title: 'to-do title',
+      description: 'do something',
+      due_date: Date.today + 10
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      title: '',
+      description: 'do something',
+      due_date: Date.today + 10
+    }
   }
 
   describe "GET /index" do
@@ -57,15 +65,18 @@ RSpec.describe "/to_dos", type: :request do
   end
 
   describe "POST /create" do
+
     context "with valid parameters" do
       it "creates a new ToDo" do
         expect {
           post to_dos_url, params: { to_do: valid_attributes }
+
         }.to change(ToDo, :count).by(1)
       end
 
       it "redirects to the created to_do" do
         post to_dos_url, params: { to_do: valid_attributes }
+
         expect(response).to redirect_to(to_do_url(ToDo.last))
       end
     end
@@ -74,12 +85,14 @@ RSpec.describe "/to_dos", type: :request do
       it "does not create a new ToDo" do
         expect {
           post to_dos_url, params: { to_do: invalid_attributes }
+
         }.to change(ToDo, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a response with http status 422" do
         post to_dos_url, params: { to_do: invalid_attributes }
-        expect(response).to be_successful
+
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

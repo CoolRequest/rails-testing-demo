@@ -1,0 +1,7 @@
+<h1>Welcome</h1>
+
+<% if @overdue_to_dos_count > 0 %>
+  You have <%= @overdue_to_dos_count %> overdue task(s). Get to work!
+<% else %>
+  Congratulations, you have no overdue tasks.
+<% end %>

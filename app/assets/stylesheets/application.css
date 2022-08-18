@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border-width: 1px;
+  border-style: groove;
+  padding: 5px;
+}
+
+.overdue {
+  color: red;
+}
+
+.today {
+  color: green;
+}
+
+.soon {
+  color: gray;
+}
+
+.submit {
+  margin-top: 10px;
+}

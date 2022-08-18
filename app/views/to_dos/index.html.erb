@@ -2,13 +2,25 @@
 
 <h1>To dos</h1>
 
-<div id="to_dos">
-  <% @to_dos.each do |to_do| %>
-    <%= render to_do %>
-    <p>
-      <%= link_to "Show this to do", to_do %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @to_dos.each do |to_do| %>
+      <tr>
+        <td><%= to_do.title %></td>
+        <td><%= to_do.due_date %></td>
+        <td><%= to_do_status(to_do) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New to do", new_to_do_path %>
+<%= link_to "New to-do", new_to_do_path %>
+
+

@@ -1,15 +1,35 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ToDosHelper. For example:
-#
-# describe ToDosHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ToDosHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "blank due date" do
+    it "returns nothing" do
+      to_do = ToDo.new(due_date: nil)
+
+      expect(helper.to_do_status(to_do)).to be_blank
+    end
+  end
+
+  context "past due date" do
+    it "returns 'overdue' label" do
+      to_do = ToDo.new(due_date: Date.yesterday)
+
+      expect(helper.to_do_status(to_do)).to include 'overdue'
+    end
+  end
+
+  context "due today" do
+    it "returns 'due today' label" do
+      to_do = ToDo.new(due_date: Date.today)
+
+      expect(helper.to_do_status(to_do)).to include 'due today'
+    end
+  end
+
+  context "future due date" do
+    it "returns 'due soon' label" do
+      to_do = ToDo.new(due_date: Date.tomorrow)
+
+      expect(helper.to_do_status(to_do)).to include 'due soon'
+    end
+  end
 end

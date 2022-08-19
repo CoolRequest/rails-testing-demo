@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe DailyReminderJob, type: :job do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "with no relevant to-dos" do
+  end
+
+  context "without relevant to-dos" do
+  end
 end

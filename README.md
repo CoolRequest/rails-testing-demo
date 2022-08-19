@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sample to-do application in Ruby on Rails.
 
-Things you may want to cover:
+## Disclaimer
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This application was written to demonstrate different RSpec test types. 
+It is intentionally simplified for didactic purposes, to keep the test cases simple. 
+It is not meant to be a real application.

@@ -1,25 +1,20 @@
 class ToDosController < ApplicationController
-  before_action :set_to_do, only: %i[ show edit update destroy ]
+  before_action :set_to_do, only: %i[ show edit update destroy export ]
 
-  # GET /to_dos
   def index
     @to_dos = ToDo.all
   end
 
-  # GET /to_dos/1
   def show
   end
 
-  # GET /to_dos/new
   def new
     @to_do = ToDo.new
   end
 
-  # GET /to_dos/1/edit
   def edit
   end
 
-  # POST /to_dos
   def create
     @to_do = ToDo.new(to_do_params)
 
@@ -30,7 +25,6 @@ class ToDosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /to_dos/1
   def update
     if @to_do.update(to_do_params)
       redirect_to @to_do, notice: "To do was successfully updated."
@@ -39,10 +33,13 @@ class ToDosController < ApplicationController
     end
   end
 
-  # DELETE /to_dos/1
   def destroy
     @to_do.destroy
     redirect_to to_dos_url, notice: "To do was successfully destroyed."
+  end
+
+  def export
+    ExportToDoJob.perform_later(@to_do)
   end
 
   private

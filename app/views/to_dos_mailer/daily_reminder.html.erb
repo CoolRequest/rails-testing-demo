@@ -1,11 +1,19 @@
-<h4>Attention</h4>
+<% if @to_dos.any? %>
 
-<p>
-You have <%= @to_dos.count %> to-dos that require action:
-</p>
+  <p>
+    You have <%= @to_dos.count %> to-do(s) that require action:
+  </p>
 
-<ul>
-  <% @to_dos.each do |to_do| %>
-    <li><%= to_do.title %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @to_dos.each do |to_do| %>
+      <li><%= to_do.title %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+  <p>
+    You have no to-dos for today.
+  </p>
+
+<% end %>
